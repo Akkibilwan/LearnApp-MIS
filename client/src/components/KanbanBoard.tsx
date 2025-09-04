@@ -70,7 +70,7 @@ interface Group {
 }
 
 interface User {
-  _id: string;
+  id: string;
   username: string;
   email: string;
 }
@@ -174,7 +174,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ spaceId, isAdmin }) => {
         task,
         targetGroupId: destination.droppableId
       });
-      setMoveTaskOwner(task.owner?._id || '');
+      setMoveTaskOwner(task.owner?.id || '');
       return;
     }
 
@@ -524,7 +524,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ spaceId, isAdmin }) => {
             >
               <MenuItem value="">Unassigned</MenuItem>
               {users.map((user) => (
-                <MenuItem key={user._id} value={user._id}>
+                <MenuItem key={user.id} value={user.id}>
                   {user.username}
                 </MenuItem>
               ))}
@@ -553,7 +553,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ spaceId, isAdmin }) => {
             >
               <MenuItem value="">Keep current owner</MenuItem>
               {users.map((user) => (
-                <MenuItem key={user._id} value={user._id}>
+                <MenuItem key={user.id} value={user.id}>
                   {user.username}
                 </MenuItem>
               ))}

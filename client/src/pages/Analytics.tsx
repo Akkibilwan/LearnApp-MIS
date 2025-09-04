@@ -4,7 +4,6 @@ import {
   Typography,
   Card,
   CardContent,
-  Grid,
   FormControl,
   InputLabel,
   Select,
@@ -18,7 +17,8 @@ import {
   TableHead,
   TableRow,
   Chip,
-  Avatar
+  Avatar,
+  Grid
 } from '@mui/material';
 import {
   BarChart,
@@ -195,7 +195,7 @@ const Analytics: React.FC = () => {
         <>
           {/* Summary Cards */}
           <Grid container spacing={3} mb={4}>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid xs={12} sm={6} md={3}>
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -207,7 +207,7 @@ const Analytics: React.FC = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid xs={12} sm={6} md={3}>
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -225,7 +225,7 @@ const Analytics: React.FC = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid xs={12} sm={6} md={3}>
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -243,7 +243,7 @@ const Analytics: React.FC = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid xs={12} sm={6} md={3}>
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -263,7 +263,7 @@ const Analytics: React.FC = () => {
           {/* Charts */}
           <Grid container spacing={3} mb={4}>
             {/* Task Status Distribution */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -277,7 +277,7 @@ const Analytics: React.FC = () => {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                          label={({ name, percent }) => `${name} (${percent ? (percent * 100).toFixed(0) : 0}%)`}
                           outerRadius={80}
                           fill="#8884d8"
                           dataKey="value"
@@ -295,7 +295,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Completion Rate */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -309,7 +309,7 @@ const Analytics: React.FC = () => {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                          label={({ name, percent }) => `${name} (${percent ? (percent * 100).toFixed(0) : 0}%)`}
                           outerRadius={80}
                           fill="#8884d8"
                           dataKey="value"
@@ -327,7 +327,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Tasks by Group */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -354,7 +354,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Tasks by Owner */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -384,7 +384,7 @@ const Analytics: React.FC = () => {
           {/* Detailed Tables */}
           <Grid container spacing={3}>
             {/* Group Performance */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -420,7 +420,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Owner Performance */}
-            <Grid item xs={12} md={6}>
+            <Grid xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -470,7 +470,7 @@ const Analytics: React.FC = () => {
                 Time Tracking Summary
               </Typography>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={4}>
+                <Grid xs={12} sm={4}>
                   <Box textAlign="center">
                     <Typography variant="h4" color="primary">
                       {analytics.totalEstimatedHours.toFixed(1)}h
@@ -480,7 +480,7 @@ const Analytics: React.FC = () => {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid xs={12} sm={4}>
                   <Box textAlign="center">
                     <Typography variant="h4" color="success.main">
                       {analytics.totalActualHours.toFixed(1)}h
@@ -490,7 +490,7 @@ const Analytics: React.FC = () => {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid xs={12} sm={4}>
                   <Box textAlign="center">
                     <Typography 
                       variant="h4" 

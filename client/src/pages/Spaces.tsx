@@ -6,7 +6,6 @@ import {
   CardActions,
   Typography,
   Button,
-  Grid,
   Fab,
   Dialog,
   DialogTitle,
@@ -18,7 +17,8 @@ import {
   MenuItem,
   Chip,
   Avatar,
-  LinearProgress
+  LinearProgress,
+  Grid
 } from '@mui/material';
 import {
   Add,
@@ -203,7 +203,7 @@ const Spaces: React.FC = () => {
   };
 
   const isSpaceAdmin = (space: Space) => {
-    return space.admin._id === user?._id;
+    return space.admin._id === user?.id;
   };
 
   const getDayNames = (days: number[]) => {
@@ -252,7 +252,7 @@ const Spaces: React.FC = () => {
       ) : (
         <Grid container spacing={3}>
           {spaces.map((space) => (
-            <Grid item xs={12} sm={6} md={4} key={space._id}>
+            <Grid xs={12} sm={6} md={4} key={space._id}>
               <Card
                 sx={{
                   height: '100%',

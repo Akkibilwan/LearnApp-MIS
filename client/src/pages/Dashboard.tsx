@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box,
-  Grid,
   Card,
   CardContent,
   Typography,
@@ -14,7 +13,8 @@ import {
   LinearProgress,
   Paper,
   Avatar,
-  Divider
+  Divider,
+  Grid
 } from '@mui/material';
 import {
   Add,
@@ -178,7 +178,7 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -198,7 +198,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </Grid>
         
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -218,7 +218,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -238,7 +238,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center">
@@ -261,7 +261,7 @@ const Dashboard: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Recent Tasks */}
-        <Grid item xs={12} md={8}>
+        <Grid xs={12} md={8}>
           <Card>
             <CardContent>
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
@@ -279,8 +279,8 @@ const Dashboard: React.FC = () => {
                 {recentTasks.map((task, index) => (
                   <React.Fragment key={task._id}>
                     <ListItem
-                      button
                       onClick={() => navigate(`/tasks/${task._id}`)}
+                      sx={{ cursor: 'pointer' }}
                     >
                       <ListItemText
                         primary={task.title}
@@ -332,7 +332,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Quick Actions & Spaces */}
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <Card sx={{ mb: 2 }}>
             <CardContent>
               <Typography variant="h6" gutterBottom>
@@ -376,8 +376,8 @@ const Dashboard: React.FC = () => {
                 {spaces.slice(0, 5).map((space) => (
                   <ListItem
                     key={space._id}
-                    button
                     onClick={() => navigate(`/spaces/${space._id}`)}
+                    sx={{ cursor: 'pointer' }}
                   >
                     <ListItemText
                       primary={space.name}

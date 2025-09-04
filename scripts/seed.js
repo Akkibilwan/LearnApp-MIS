@@ -30,7 +30,7 @@ const seedDatabase = async () => {
     const adminUser = new User({
       username: 'admin',
       email: 'admin@example.com',
-      password: await bcrypt.hash('admin123', 10),
+      password: 'admin123',
       role: 'admin',
       workingHours: { start: '09:00', end: '17:00' },
       workingDays: [1, 2, 3, 4, 5]
@@ -40,7 +40,7 @@ const seedDatabase = async () => {
     const user1 = new User({
       username: 'john_doe',
       email: 'john@example.com',
-      password: await bcrypt.hash('user123', 10),
+      password: 'user123',
       role: 'user',
       workingHours: { start: '09:00', end: '17:00' },
       workingDays: [1, 2, 3, 4, 5]
@@ -50,7 +50,7 @@ const seedDatabase = async () => {
     const user2 = new User({
       username: 'jane_smith',
       email: 'jane@example.com',
-      password: await bcrypt.hash('user123', 10),
+      password: 'user123',
       role: 'user',
       workingHours: { start: '10:00', end: '18:00' },
       workingDays: [1, 2, 3, 4, 5]

@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
   Avatar,
-  Grid,
   List,
   ListItem,
   ListItemText,
@@ -21,13 +20,16 @@ import {
   LinearProgress,
   Alert,
   Paper,
+  Grid
+} from '@mui/material';
+import {
   Timeline,
   TimelineItem,
   TimelineSeparator,
   TimelineConnector,
   TimelineContent,
   TimelineDot
-} from '@mui/material';
+} from '@mui/lab';
 import {
   ArrowBack,
   Schedule,
@@ -227,7 +229,7 @@ const TaskDetail: React.FC = () => {
   };
 
   const canUpdateTask = () => {
-    return task?.owner?._id === user?._id || user?.role === 'admin';
+    return task?.owner?.id === user?.id || user?.role === 'admin';
   };
 
   const calculateProgress = () => {
@@ -273,7 +275,7 @@ const TaskDetail: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Main Task Info */}
-        <Grid item xs={12} md={8}>
+        <Grid xs={12} md={8}>
           <Card sx={{ mb: 3 }}>
             <CardContent>
               <Box display="flex" alignItems="center" gap={2} mb={2}>
@@ -393,7 +395,7 @@ const TaskDetail: React.FC = () => {
               </Typography>
               
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                <Grid xs={12} sm={6}>
                   <List dense>
                     {task.timeline.startTime && (
                       <ListItem>
@@ -431,7 +433,7 @@ const TaskDetail: React.FC = () => {
                   </List>
                 </Grid>
                 
-                <Grid item xs={12} sm={6}>
+                <Grid xs={12} sm={6}>
                   <Box mb={2}>
                     <Typography variant="body2" color="textSecondary" gutterBottom>
                       Time Progress
@@ -494,7 +496,7 @@ const TaskDetail: React.FC = () => {
         </Grid>
 
         {/* Sidebar */}
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           {/* Approval Status */}
           {task.currentGroup && (
             <Card sx={{ mb: 3 }}>

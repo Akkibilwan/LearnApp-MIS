@@ -147,7 +147,7 @@ const Register: React.FC = () => {
                   id="role-select"
                   value={formData.role}
                   label="Role"
-                  onChange={handleChange('role')}
+                  onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value as string }))}
                 >
                   <MenuItem value="user">User</MenuItem>
                   <MenuItem value="admin">Admin</MenuItem>

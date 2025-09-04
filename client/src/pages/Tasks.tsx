@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Button,
-  Grid,
   Chip,
   Avatar,
   List,
@@ -27,7 +26,8 @@ import {
   Tabs,
   Tab,
   Paper,
-  Tooltip
+  Tooltip,
+  Grid
 } from '@mui/material';
 import {
   MoreVert,
@@ -194,7 +194,7 @@ const Tasks: React.FC = () => {
       case 0: // All tasks
         return tasks;
       case 1: // My tasks
-        return tasks.filter(task => task.owner?._id === user?._id);
+        return tasks.filter(task => task.owner?.id === user?.id);
       case 2: // In progress
         return tasks.filter(task => task.currentStatus === 'In-progress');
       case 3: // Completed
@@ -352,7 +352,7 @@ const Tasks: React.FC = () => {
       {/* Filters */}
       <Paper sx={{ p: 2, mb: 3 }}>
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
               <InputLabel>Space</InputLabel>
               <Select
@@ -369,7 +369,7 @@ const Tasks: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
               <InputLabel>Status</InputLabel>
               <Select
@@ -386,7 +386,7 @@ const Tasks: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
               <InputLabel>Priority</InputLabel>
               <Select
@@ -402,7 +402,7 @@ const Tasks: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid xs={12} sm={6} md={3}>
             <Button
               variant="outlined"
               onClick={() => setFilters({ space: '', status: '', owner: '', priority: '' })}
@@ -417,7 +417,7 @@ const Tasks: React.FC = () => {
       {/* Tabs */}
       <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} sx={{ mb: 3 }}>
         <Tab label={`All (${tasks.length})`} />
-        <Tab label={`My Tasks (${tasks.filter(t => t.owner?._id === user?._id).length})`} />
+        <Tab label={`My Tasks (${tasks.filter(t => t.owner?.id === user?.id).length})`} />
         <Tab label={`In Progress (${tasks.filter(t => t.currentStatus === 'In-progress').length})`} />
         <Tab label={`Completed (${tasks.filter(t => t.currentStatus === 'Completed').length})`} />
         <Tab label={`Delayed (${tasks.filter(t => t.completionStatus === 'delayed').length})`} />
@@ -443,7 +443,7 @@ const Tasks: React.FC = () => {
         ) : (
           <Grid container spacing={2}>
             {getFilteredTasks().map((task) => (
-              <Grid item xs={12} md={6} lg={4} key={task._id}>
+              <Grid xs={12} md={6} lg={4} key={task._id}>
                 <TaskCard task={task} />
               </Grid>
             ))}
@@ -466,7 +466,7 @@ const Tasks: React.FC = () => {
           <Visibility sx={{ mr: 1 }} />
           View Details
         </MenuItem>
-        {taskMenu.task?.owner?._id === user?._id && (
+        {taskMenu.task?.owner?.id === user?.id && (
           <>
             <MenuItem onClick={() => {
               setStatusDialog({ open: true, task: taskMenu.task });

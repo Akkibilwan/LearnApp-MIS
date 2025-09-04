@@ -6,7 +6,6 @@ import {
   CardContent,
   TextField,
   Button,
-  Grid,
   Avatar,
   Divider,
   List,
@@ -21,7 +20,8 @@ import {
   DialogActions,
   FormControlLabel,
   Checkbox,
-  FormGroup
+  FormGroup,
+  Grid
 } from '@mui/material';
 import {
   Edit,
@@ -75,7 +75,7 @@ const Profile: React.FC = () => {
 
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get(`/users/${user?._id}/leaves`);
+      const response = await axios.get(`/users/${user?.id}/leaves`);
       setLeaves(response.data);
     } catch (error) {
       console.error('Error fetching leaves:', error);
@@ -114,7 +114,7 @@ const Profile: React.FC = () => {
     }
 
     try {
-      await axios.post(`/users/${user?._id}/leaves`, {
+      await axios.post(`/users/${user?.id}/leaves`, {
         date: leaveForm.date.toISOString(),
         reason: leaveForm.reason
       });
@@ -161,7 +161,7 @@ const Profile: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Profile Information */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card>
             <CardContent>
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
@@ -317,7 +317,7 @@ const Profile: React.FC = () => {
         </Grid>
 
         {/* Leave Requests */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card>
             <CardContent>
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>

@@ -156,7 +156,7 @@ const SpaceDetail: React.FC = () => {
   };
 
   const isSpaceAdmin = () => {
-    return space?.admin._id === user?._id;
+    return space?.admin._id === user?.id;
   };
 
   const handleCreateGroup = async () => {
@@ -464,7 +464,7 @@ const SpaceDetail: React.FC = () => {
             </ListItem>
             
             {space.members.map((member) => (
-              <ListItem key={member.user._id}>
+              <ListItem key={member.user.id}>
                 <ListItemText
                   primary={member.user.username}
                   secondary="Member"
@@ -473,7 +473,7 @@ const SpaceDetail: React.FC = () => {
                   {isSpaceAdmin() && (
                     <IconButton
                       edge="end"
-                      onClick={() => handleRemoveMember(member.user._id)}
+                      onClick={() => handleRemoveMember(member.user.id)}
                     >
                       <Delete />
                     </IconButton>

@@ -42,7 +42,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../contexts/NotificationContext';
 
 interface User {
-  _id: string;
+  id: string;
   username: string;
   email: string;
   role: 'admin' | 'user';
@@ -52,7 +52,7 @@ interface User {
   };
   workingDays: number[];
   spaces: Array<{
-    _id: string;
+    id: string;
     name: string;
   }>;
   createdAt: string;
@@ -114,11 +114,11 @@ const Users: React.FC = () => {
       // Fetch stats for each user
       const statsPromises = response.data.map(async (user: User) => {
         try {
-          const statsRes = await axios.get(`/users/${user._id}/stats`);
-          return { userId: user._id, stats: statsRes.data };
+          const statsRes = await axios.get(`/users/${user.id}/stats`);
+          return { userId: user.id, stats: statsRes.data };
         } catch (error) {
-          console.error(`Error fetching stats for user ${user._id}:`, error);
-          return { userId: user._id, stats: null };
+          console.error(`Error fetching stats for user ${user.id}:`, error);
+          return { userId: user.id, stats: null };
         }
       });
 
@@ -163,7 +163,7 @@ const Users: React.FC = () => {
     if (!user || !userForm.username.trim() || !userForm.email.trim()) return;
 
     try {
-      await axios.put(`/users/${user._id}`, {
+      await axios.put(`/users/${user.id}`, {
         username: userForm.username,
         email: userForm.email,
         role: userForm.role,
@@ -188,7 +188,7 @@ const Users: React.FC = () => {
     if (!user) return;
 
     try {
-      await axios.delete(`/users/${user._id}`);
+      await axios.delete(`/users/${user.id}`);
       showNotification('User deleted successfully', 'success');
       setDeleteDialog({ open: false });
       fetchUsers();
@@ -229,7 +229,7 @@ const Users: React.FC = () => {
   };
 
   const openStatsDialog = (user: User) => {
-    const stats = userStats[user._id];
+    const stats = userStats[user.id];
     setStatsDialog({ open: true, user, stats });
     setUserMenu({ anchorEl: null });
   };
@@ -281,9 +281,9 @@ const Users: React.FC = () => {
           </TableHead>
           <TableBody>
             {users.map((user) => {
-              const stats = userStats[user._id];
+              const stats = userStats[user.id];
               return (
-                <TableRow key={user._id}>
+                <TableRow key={user.id}>
                   <TableCell>
                     <Box display="flex" alignItems="center" gap={2}>
                       <Avatar sx={{ bgcolor: user.role === 'admin' ? 'primary.main' : 'grey.400' }}>
@@ -412,7 +412,7 @@ const Users: React.FC = () => {
           <Edit sx={{ mr: 1 }} />
           Edit User
         </MenuItem>
-        {userMenu.user?._id !== currentUser?._id && (
+        {userMenu.user?.id !== currentUser?.id && (
           <MenuItem onClick={() => {
             setDeleteDialog({ open: true, user: userMenu.user });
             setUserMenu({ anchorEl: null });
