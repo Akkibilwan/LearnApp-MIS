@@ -40,6 +40,7 @@ import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../contexts/NotificationContext';
 import KanbanBoard from '../components/KanbanBoard';
+import DebugInfo from '../components/DebugInfo';
 
 interface Space {
   _id: string;
@@ -156,7 +157,7 @@ const SpaceDetail: React.FC = () => {
   };
 
   const isSpaceAdmin = () => {
-    return space?.admin._id === user?.id;
+    return space?.admin._id === user?._id;
   };
 
   const handleCreateGroup = async () => {
@@ -645,6 +646,8 @@ const SpaceDetail: React.FC = () => {
           <Button onClick={handleAddMember} variant="contained">Add Member</Button>
         </DialogActions>
       </Dialog>
+      
+      <DebugInfo space={space} groups={groups} isAdmin={isSpaceAdmin()} />
     </Box>
   );
 };

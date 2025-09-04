@@ -203,7 +203,7 @@ const Spaces: React.FC = () => {
   };
 
   const isSpaceAdmin = (space: Space) => {
-    return space.admin._id === user?.id;
+    return space.admin._id === user?._id;
   };
 
   const getDayNames = (days: number[]) => {
