@@ -194,8 +194,8 @@ const Analytics: React.FC = () => {
       ) : analytics ? (
         <>
           {/* Summary Cards */}
-          <Grid container spacing={3} mb={4}>
-            <Grid xs={12} sm={6} md={3}>
+          <Box display="flex" flexWrap="wrap" gap={3} mb={4}>
+            <Box flex="1" minWidth="250px">
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -206,14 +206,14 @@ const Analytics: React.FC = () => {
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid xs={12} sm={6} md={3}>
+            </Box>
+            <Box flex="1" minWidth="250px">
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     Completed Tasks
                   </Typography>
-                  <Typography variant="h4" sx={{ color: 'success.main' }}>
+                  <Typography variant="h4" color="success.main">
                     {analytics.completedTasks}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
@@ -224,14 +224,14 @@ const Analytics: React.FC = () => {
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid xs={12} sm={6} md={3}>
+            </Box>
+            <Box flex="1" minWidth="250px">
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     Delayed Tasks
                   </Typography>
-                  <Typography variant="h4" sx={{ color: 'error.main' }}>
+                  <Typography variant="h4" color="error.main">
                     {analytics.delayedTasks}
                   </Typography>
                   <Typography variant="body2" color="textSecondary">
@@ -242,8 +242,8 @@ const Analytics: React.FC = () => {
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
-            <Grid xs={12} sm={6} md={3}>
+            </Box>
+            <Box flex="1" minWidth="250px">
               <Card>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
@@ -257,13 +257,13 @@ const Analytics: React.FC = () => {
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
 
           {/* Charts */}
-          <Grid container spacing={3} mb={4}>
+          <Box display="flex" flexWrap="wrap" gap={3} mb={4}>
             {/* Task Status Distribution */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -295,7 +295,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Completion Rate */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -327,7 +327,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Tasks by Group */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -354,7 +354,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Tasks by Owner */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -378,13 +378,13 @@ const Analytics: React.FC = () => {
                   </Box>
                 </CardContent>
               </Card>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
 
           {/* Detailed Tables */}
-          <Grid container spacing={3}>
+          <Box display="flex" flexWrap="wrap" gap={3}>
             {/* Group Performance */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -420,7 +420,7 @@ const Analytics: React.FC = () => {
             </Grid>
 
             {/* Owner Performance */}
-            <Grid xs={12} md={6}>
+            <Box flex="1" minWidth="400px">
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -469,8 +469,8 @@ const Analytics: React.FC = () => {
               <Typography variant="h6" gutterBottom>
                 Time Tracking Summary
               </Typography>
-              <Grid container spacing={3}>
-                <Grid xs={12} sm={4}>
+              <Box display="flex" flexWrap="wrap" gap={3}>
+                <Box flex="1" minWidth="200px">
                   <Box textAlign="center">
                     <Typography variant="h4" color="primary">
                       {analytics.totalEstimatedHours.toFixed(1)}h
@@ -480,7 +480,7 @@ const Analytics: React.FC = () => {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid xs={12} sm={4}>
+                <Box flex="1" minWidth="200px">
                   <Box textAlign="center">
                     <Typography variant="h4" color="success.main">
                       {analytics.totalActualHours.toFixed(1)}h
@@ -490,7 +490,7 @@ const Analytics: React.FC = () => {
                     </Typography>
                   </Box>
                 </Grid>
-                <Grid xs={12} sm={4}>
+                <Box flex="1" minWidth="200px">
                   <Box textAlign="center">
                     <Typography 
                       variant="h4" 
@@ -505,8 +505,8 @@ const Analytics: React.FC = () => {
                       Time Efficiency
                     </Typography>
                   </Box>
-                </Grid>
-              </Grid>
+                </Box>
+              </Box>
               
               <Box mt={2}>
                 <LinearProgress 

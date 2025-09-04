@@ -75,7 +75,7 @@ const Profile: React.FC = () => {
 
   const fetchLeaves = async () => {
     try {
-      const response = await axios.get(`/users/${user?.id}/leaves`);
+      const response = await axios.get(`/users/${user?._id}/leaves`);
       setLeaves(response.data);
     } catch (error) {
       console.error('Error fetching leaves:', error);
@@ -114,7 +114,7 @@ const Profile: React.FC = () => {
     }
 
     try {
-      await axios.post(`/users/${user?.id}/leaves`, {
+      await axios.post(`/users/${user?._id}/leaves`, {
         date: leaveForm.date.toISOString(),
         reason: leaveForm.reason
       });

@@ -464,7 +464,7 @@ const SpaceDetail: React.FC = () => {
             </ListItem>
             
             {space.members.map((member) => (
-              <ListItem key={member.user.id}>
+              <ListItem key={member.user._id}>
                 <ListItemText
                   primary={member.user.username}
                   secondary="Member"
@@ -473,7 +473,7 @@ const SpaceDetail: React.FC = () => {
                   {isSpaceAdmin() && (
                     <IconButton
                       edge="end"
-                      onClick={() => handleRemoveMember(member.user.id)}
+                      onClick={() => handleRemoveMember(member.user._id)}
                     >
                       <Delete />
                     </IconButton>

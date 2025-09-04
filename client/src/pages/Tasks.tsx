@@ -194,7 +194,7 @@ const Tasks: React.FC = () => {
       case 0: // All tasks
         return tasks;
       case 1: // My tasks
-        return tasks.filter(task => task.owner?.id === user?.id);
+        return tasks.filter(task => task.owner?._id === user?._id);
       case 2: // In progress
         return tasks.filter(task => task.currentStatus === 'In-progress');
       case 3: // Completed
@@ -417,7 +417,7 @@ const Tasks: React.FC = () => {
       {/* Tabs */}
       <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} sx={{ mb: 3 }}>
         <Tab label={`All (${tasks.length})`} />
-        <Tab label={`My Tasks (${tasks.filter(t => t.owner?.id === user?.id).length})`} />
+        <Tab label={`My Tasks (${tasks.filter(t => t.owner?._id === user?._id).length})`} />
         <Tab label={`In Progress (${tasks.filter(t => t.currentStatus === 'In-progress').length})`} />
         <Tab label={`Completed (${tasks.filter(t => t.currentStatus === 'Completed').length})`} />
         <Tab label={`Delayed (${tasks.filter(t => t.completionStatus === 'delayed').length})`} />
@@ -466,7 +466,7 @@ const Tasks: React.FC = () => {
           <Visibility sx={{ mr: 1 }} />
           View Details
         </MenuItem>
-        {taskMenu.task?.owner?.id === user?.id && (
+        {taskMenu.task?.owner?._id === user?._id && (
           <>
             <MenuItem onClick={() => {
               setStatusDialog({ open: true, task: taskMenu.task });

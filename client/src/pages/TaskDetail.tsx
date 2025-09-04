@@ -229,7 +229,7 @@ const TaskDetail: React.FC = () => {
   };
 
   const canUpdateTask = () => {
-    return task?.owner?.id === user?.id || user?.role === 'admin';
+    return task?.owner?._id === user?._id || user?.role === 'admin';
   };
 
   const calculateProgress = () => {
