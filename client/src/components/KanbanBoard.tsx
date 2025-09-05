@@ -138,8 +138,15 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ spaceId, isAdmin }) => {
         })
       );
 
+      // Add demo users for task assignment
+      const demoUsers = [
+        { _id: 'demo_user_1', username: 'User 1', email: 'user1@demo.com' },
+        { _id: 'demo_user_2', username: 'User 2', email: 'user2@demo.com' },
+        { _id: 'demo_user_3', username: 'User 3', email: 'user3@demo.com' }
+      ];
+
       setGroups(groupsWithTasks.sort((a, b) => a.order - b.order));
-      setUsers(usersRes.data);
+      setUsers([...demoUsers, ...usersRes.data]);
     } catch (error) {
       console.error('Error fetching kanban data:', error);
       showNotification('Failed to load kanban board', 'error');

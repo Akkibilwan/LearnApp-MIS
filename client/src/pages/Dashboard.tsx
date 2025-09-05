@@ -341,14 +341,6 @@ const Dashboard: React.FC = () => {
               <Box display="flex" flexDirection="column" gap={1}>
                 <Button
                   variant="outlined"
-                  startIcon={<Business />}
-                  onClick={() => navigate('/spaces')}
-                  fullWidth
-                >
-                  Manage Spaces
-                </Button>
-                <Button
-                  variant="outlined"
                   startIcon={<Assignment />}
                   onClick={() => navigate('/tasks')}
                   fullWidth
@@ -394,16 +386,6 @@ const Dashboard: React.FC = () => {
                   </ListItem>
                 )}
               </List>
-              {spaces.length > 5 && (
-                <Button
-                  size="small"
-                  onClick={() => navigate('/spaces')}
-                  fullWidth
-                  sx={{ mt: 1 }}
-                >
-                  View All Spaces
-                </Button>
-              )}
             </CardContent>
           </Card>
         </Grid>
