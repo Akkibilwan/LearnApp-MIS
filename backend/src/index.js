@@ -7,8 +7,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 require('dotenv').config();
 
-// Import database configuration
-const { query } = require('./config/database');
+// Import database configuration (use local mock for development)
+const { query } = require('./config/database-local');
 
 // Import routes
 const authRoutes = require('./routes/auth');
