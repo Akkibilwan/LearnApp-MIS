@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 24 24 24; /* #181818 */
+    --foreground: 255 255 255; /* #ffffff */
+    --card: 32 32 32; /* #202020 */
+    --card-foreground: 255 255 255;
+    --popover: 32 32 32; /* #202020 */
+    --popover-foreground: 255 255 255;
+    --primary: 0 198 255; /* #00C6FF */
+    --primary-foreground: 255 255 255;
+    --secondary: 42 42 42; /* #2a2a2a */
+    --secondary-foreground: 255 255 255;
+    --muted: 42 42 42; /* #2a2a2a */
+    --muted-foreground: 163 163 163; /* #a3a3a3 */
+    --accent: 255 92 141; /* #FF5C8D */
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 51 51 51; /* #333333 */
+    --input: 51 51 51; /* #333333 */
+    --ring: 0 198 255; /* #00C6FF */
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 24 24 24;
+    --foreground: 255 255 255;
+    --card: 32 32 32;
+    --card-foreground: 255 255 255;
+    --popover: 32 32 32;
+    --popover-foreground: 255 255 255;
+    --primary: 0 198 255;
+    --primary-foreground: 255 255 255;
+    --secondary: 42 42 42;
+    --secondary-foreground: 255 255 255;
+    --muted: 42 42 42;
+    --muted-foreground: 163 163 163;
+    --accent: 255 92 141;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 51 51 51;
+    --input: 51 51 51;
+    --ring: 0 198 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/40 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/60;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.4) hsl(var(--muted) / 0.2);
+  }
+}
+
+@layer components {
+  /* Neumorphic design elements */
+  .neumorphic {
+    background: linear-gradient(145deg, #1e1e1e, #222222);
+    box-shadow: 
+      inset 5px 5px 10px rgba(0, 0, 0, 0.3),
+      inset -5px -5px 10px rgba(255, 255, 255, 0.1);
+  }
+
+  .neumorphic-pressed {
+    background: linear-gradient(145deg, #222222, #1e1e1e);
+    box-shadow: 
+      inset -5px -5px 10px rgba(0, 0, 0, 0.3),
+      inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+  }
+
+  .neumorphic-raised {
+    background: linear-gradient(145deg, #222222, #1e1e1e);
+    box-shadow: 
+      5px 5px 10px rgba(0, 0, 0, 0.3),
+      -5px -5px 10px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 100%);
+  }
+
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.3),
+      0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Loading shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Focus rings */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 focus-ring;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 focus-ring;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground focus-ring;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-ring;
+  }
+
+  /* Input styles */
+  .input-base {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+@layer utilities {
+  /* Text utilities */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Spacing utilities for consistent layouts */
+  .space-section {
+    @apply px-6 py-8 md:px-8 lg:px-12;
+  }
+
+  .space-content {
+    @apply px-4 py-6 md:px-6;
+  }
+
+  /* Animation delays */
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  /* Grid utilities */
+  .grid-fill-300 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .grid-fill-200 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  /* Flex utilities */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
