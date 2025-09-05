@@ -1,232 +1,246 @@
-# Video Production Manager
+# Project Management Platform
 
-A comprehensive project management system specifically designed for video production timelines. This application helps teams manage video production workflows from topic selection to release, with features like milestone tracking, timeline management, dependency handling, and team collaboration.
+A comprehensive modern project management platform that combines the flexibility of Asana, workflow power of JIRA, and visual boards like Trello. Built with a dark theme design system and real-time collaboration features.
 
-## Features
+## 🎨 Design System
 
-### Core Features
-- **Space Management**: Create and manage different production spaces (teams/departments)
-- **Milestone-based Workflow**: Define groups (milestones) with dependencies and time estimates
-- **Kanban Board**: Visual task management with drag-and-drop functionality
-- **Timeline Tracking**: Automatic timeline calculations based on working hours and dependencies
-- **User Management**: Role-based access control (Admin/User)
-- **Real-time Status Updates**: Track task progress with detailed status history
+- **Background**: `#181818` (Dark theme)
+- **Primary**: `#00C6FF` (Bright blue for main actions)
+- **Accent**: `#FF5C8D` (Pink for highlights)
+- **Typography**: Inter font family
+- **Style**: Neumorphic design elements with glass-morphism effects
+
+## 🏗️ Architecture
+
+### Backend (Node.js + PostgreSQL)
+- **Express.js** REST API with JWT authentication
+- **PostgreSQL** database with dynamic JSONB fields for flexible configurations
+- **Socket.IO** for real-time collaboration
+- **Comprehensive API** with proper error handling and validation
+
+### Frontend (React + TypeScript)
+- **React 18** with TypeScript for type safety
+- **Tailwind CSS** for styling with custom dark theme
+- **Shadcn/ui** components for consistent UI
+- **Framer Motion** for smooth animations
+- **React DnD** for drag-and-drop functionality
+- **Socket.IO Client** for real-time updates
+
+## 📊 Database Schema
+
+Dynamic PostgreSQL schema with JSONB fields supporting:
+- **Organizations** with multi-tenancy
+- **Spaces** (Teams/Departments) with configurable workflows
+- **Groups** (Workflow stages) with custom rules and SLA
+- **Tasks** with rich metadata and custom fields
+- **Users** with role-based permissions
+- **Real-time activity logs** and audit trails
+
+## 🚀 Features
+
+### Core Functionality
+- ✅ **Authentication & Authorization** - JWT-based with role management
+- ✅ **Multi-tenant Architecture** - Organization-level isolation
+- ✅ **Dynamic Workspaces** - Configurable spaces with custom workflows
+- ✅ **Kanban Boards** - Drag-and-drop task management
+- ✅ **Real-time Collaboration** - Live updates and user presence
+- ✅ **Dark Theme Design** - Modern neumorphic interface
 
 ### Advanced Features
-- **Dependency Management**: Sequential and parallel milestone dependencies
-- **Approval Workflows**: Set approval milestones for quality control
-- **Working Hours Management**: Configurable working hours and days per user/space
-- **Leave Management**: Handle user leaves with automatic timeline adjustments
-- **Analytics Dashboard**: Comprehensive analytics with charts and performance metrics
-- **Google Docs Integration**: Custom HTML templates for external collaboration
-- **Slack Integration**: Webhook notifications for milestone updates
+- 🔄 **Dynamic Workflows** - Configurable stages and transitions
+- 📊 **Analytics Dashboard** - Performance metrics and insights
+- 👥 **Team Management** - Role-based access control
+- 🔗 **Task Dependencies** - Complex relationship management
+- ⏱️ **SLA Tracking** - Working hours and deadline monitoring
+- 💬 **Comments & Mentions** - Collaborative discussions
 
-## Tech Stack
-
-### Backend
-- **Node.js** with Express.js
-- **MongoDB** with Mongoose ODM
-- **JWT** authentication
-- **bcryptjs** for password hashing
-- **moment.js** for date/time calculations
-- **axios** for HTTP requests
-
-### Frontend
-- **React 18** with TypeScript
-- **Material-UI (MUI)** for UI components
-- **React Router** for navigation
-- **React Beautiful DnD** for drag-and-drop
-- **Recharts** for analytics visualization
-- **Moment.js** for date handling
-
-## Installation & Setup
+## 🛠️ Installation & Setup
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (local or cloud instance)
-- npm or yarn
-
-### 1. Clone and Install Dependencies
-
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd video-production-manager
+Node.js 18+
+PostgreSQL 14+
+Redis 6+ (optional, for caching)
+```
 
-# Install backend dependencies
+### Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install dependencies
 npm install
 
-# Install frontend dependencies
-cd client
-npm install --legacy-peer-deps
-cd ..
-```
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your database credentials
 
-### 2. Environment Configuration
+# Run database migrations
+npm run migrate
 
-Create a `.env` file in the root directory:
-
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/video_production_manager
-JWT_SECRET=your_super_secret_jwt_key_here
-SLACK_WEBHOOK_URL=your_slack_webhook_url_here
-GOOGLE_DOCS_API_KEY=your_google_docs_api_key_here
-NODE_ENV=development
-```
-
-### 3. Database Setup
-
-Start MongoDB service, then seed the database with sample data:
-
-```bash
-# Seed the database with sample data
-node scripts/seed.js
-```
-
-### 4. Start the Application
-
-```bash
-# Start both backend and frontend in development mode
+# Start development server
 npm run dev
-
-# Or start them separately:
-# Backend only
-npm run server
-
-# Frontend only (in another terminal)
-npm run client
 ```
 
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
+### Frontend Setup
+```bash
+# Navigate to frontend directory
+cd frontend
 
-## Demo Credentials
+# Install dependencies
+npm install
 
-After running the seed script, you can use these credentials:
+# Start development server
+npm run dev
+```
 
-- **Admin**: admin@example.com / admin123
-- **User 1**: john@example.com / user123
-- **User 2**: jane@example.com / user123
+### Environment Variables
 
-## Usage Guide
+**Backend (.env):**
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=project_management
+DB_USER=postgres
+DB_PASSWORD=your_password
+JWT_SECRET=your-secret-key
+PORT=3001
+CLIENT_URL=http://localhost:3000
+```
 
-### 1. Getting Started
-1. Login with demo credentials or create a new account
-2. Create your first Space (production team/project)
-3. Set up Groups (milestones) with dependencies and time estimates
-4. Add team members to your space
-5. Start creating and managing tasks
+## 📁 Project Structure
 
-### 2. Space Management
-- **Create Space**: Define your production team with working hours and settings
-- **Add Members**: Invite team members via email
-- **Configure Settings**: Set up parallel tasks, approval requirements, and integrations
+```
+project-management-platform/
+├── backend/                  # Node.js API server
+│   ├── src/
+│   │   ├── config/          # Database and app configuration
+│   │   ├── middleware/      # Authentication and validation
+│   │   ├── models/          # Data models and business logic
+│   │   ├── routes/          # API endpoints
+│   │   ├── sockets/         # WebSocket handlers
+│   │   └── migrations/      # Database schema migrations
+│   └── package.json
+├── frontend/                # React frontend
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── contexts/        # React context providers
+│   │   ├── hooks/           # Custom React hooks
+│   │   ├── lib/             # Utilities and API client
+│   │   ├── pages/           # Application pages
+│   │   └── types/           # TypeScript type definitions
+│   └── package.json
+└── README.md
+```
 
-### 3. Group (Milestone) Setup
-- **Sequential Dependencies**: Tasks must complete previous milestones first
-- **Parallel Dependencies**: Tasks can run simultaneously with other milestones
-- **Approval Groups**: Require admin approval before proceeding
-- **Start/Final Groups**: Mark beginning and end milestones
-
-### 4. Task Management
-- **Kanban Board**: Drag and drop tasks between milestones
-- **Status Tracking**: Mark tasks as In-progress, Completed, Paused, etc.
-- **Timeline Calculation**: Automatic due date calculation based on working hours
-- **Owner Assignment**: Assign tasks to specific team members
-
-### 5. Analytics & Reporting
-- **Performance Metrics**: Track completion rates, delays, and efficiency
-- **Visual Charts**: Pie charts, bar charts, and progress indicators
-- **Time Tracking**: Monitor estimated vs actual time spent
-- **Team Performance**: Individual and group performance analytics
-
-## API Endpoints
+## 🔄 API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Register new user
+- `POST /api/auth/register` - Register new user/organization
 - `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user
+- `GET /api/auth/me` - Get current user profile
 - `PUT /api/auth/profile` - Update user profile
 
 ### Spaces
 - `GET /api/spaces` - Get user's spaces
 - `POST /api/spaces` - Create new space
 - `GET /api/spaces/:id` - Get space details
-- `PUT /api/spaces/:id` - Update space
-- `DELETE /api/spaces/:id` - Delete space
-
-### Groups
-- `GET /api/groups/space/:spaceId` - Get groups in space
-- `POST /api/groups/space/:spaceId` - Create new group
-- `PUT /api/groups/:id` - Update group
-- `DELETE /api/groups/:id` - Delete group
+- `PUT /api/spaces/:id` - Update space configuration
 
 ### Tasks
 - `GET /api/tasks/space/:spaceId` - Get tasks in space
 - `POST /api/tasks/space/:spaceId` - Create new task
-- `GET /api/tasks/:id` - Get task details
-- `PUT /api/tasks/:id/status` - Update task status
-- `PUT /api/tasks/:id/move` - Move task to different group
+- `PUT /api/tasks/:id/move` - Move task between groups
+- `GET /api/tasks/:id` - Get task details with comments
 
-### Users (Admin only)
-- `GET /api/users` - Get all users
-- `GET /api/users/search` - Search users
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
+### Real-time Events (WebSocket)
+- `task.created` - New task created
+- `task.updated` - Task modified
+- `task.moved` - Task moved between groups
+- `user.joined` - User joined space
+- `comment.added` - New comment added
 
-## Integrations
+## 🎯 Development Roadmap
 
-### Google Docs Integration
-1. Generate custom HTML templates for each space
-2. Copy template to Google Docs for external collaboration
-3. Use embedded JavaScript to sync status updates back to the system
+### Phase 1: Core Features ✅
+- [x] Authentication system
+- [x] Basic CRUD operations
+- [x] Real-time updates
+- [x] Dark theme UI
 
-### Slack Integration
-1. Configure Slack webhook URL in space settings
-2. Receive notifications for:
-   - Task status changes
-   - Milestone completions
-   - Approval requests
-   - Delayed tasks
+### Phase 2: Advanced Features 🔄
+- [ ] Kanban board implementation
+- [ ] Advanced workflow engine
+- [ ] SLA monitoring
+- [ ] Dependency management
+- [ ] Data migration scripts
 
-## Deployment
+### Phase 3: Integrations 📅
+- [ ] Slack notifications
+- [ ] Email system
+- [ ] File uploads
+- [ ] External API integrations
 
-### Production Build
+### Phase 4: Analytics & Reporting 📊
+- [ ] Performance dashboards
+- [ ] Custom reports
+- [ ] Export functionality
+- [ ] Advanced metrics
 
+## 🔧 Development
+
+### Running in Development
 ```bash
-# Build frontend for production
-cd client
+# Start backend (from /backend)
+npm run dev
+
+# Start frontend (from /frontend) 
+npm run dev
+
+# The application will be available at:
+# Frontend: http://localhost:3000
+# Backend: http://localhost:3001
+```
+
+### Building for Production
+```bash
+# Build frontend
+cd frontend
 npm run build
-cd ..
 
 # Start production server
+cd ../backend
 npm start
 ```
 
-### Environment Variables for Production
+## 📝 Migration from Existing System
 
-```env
-NODE_ENV=production
-PORT=5000
-MONGODB_URI=mongodb://your-production-db-url
-JWT_SECRET=your-production-jwt-secret
-SLACK_WEBHOOK_URL=your-slack-webhook
-```
+The platform includes migration capabilities to transfer data from the existing MongoDB-based system to the new PostgreSQL structure. Migration scripts will be provided to:
 
-## Contributing
+1. **User Migration** - Transfer user accounts and permissions
+2. **Space Migration** - Convert existing spaces to new structure
+3. **Task Migration** - Preserve task history and relationships
+4. **File Migration** - Move attachments and documents
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
+## 🆘 Support
 
-For support, email support@videoproductionmanager.com or create an issue in the GitHub repository.
+For support and questions:
+- Create an issue in the GitHub repository
+- Check the documentation in `/docs` folder
+- Review the API documentation at `/api/docs` when server is running
+
+---
+
+Built with ❤️ using modern web technologies for efficient project management.
