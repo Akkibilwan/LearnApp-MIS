@@ -14,7 +14,6 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import Spaces from './pages/Spaces';
 import SpaceDetail from './pages/SpaceDetail';
 import Tasks from './pages/Tasks';
 import TaskDetail from './pages/TaskDetail';
@@ -67,7 +66,6 @@ function App() {
                         <Routes>
                           <Route path="/" element={<Navigate to="/dashboard" />} />
                           <Route path="/dashboard" element={<Dashboard />} />
-                          <Route path="/spaces" element={<Spaces />} />
                           <Route path="/spaces/:spaceId" element={<SpaceDetail />} />
                           <Route path="/tasks" element={<Tasks />} />
                           <Route path="/tasks/:taskId" element={<TaskDetail />} />

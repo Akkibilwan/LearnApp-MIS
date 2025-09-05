@@ -41,7 +41,24 @@ const spaceAuth = async (req, res, next) => {
   try {
     await auth(req, res, () => {});
     
-    const spaceId = req.params.spaceId || req.body.spaceId;
+    let spaceId = req.params.spaceId || req.body.spaceId;
+    
+    // If no spaceId found, try to get it from groupId or taskId
+    if (!spaceId && req.params.groupId) {
+      const Group = require('../models/Group');
+      const group = await Group.findById(req.params.groupId);
+      if (group) {
+        spaceId = group.space.toString();
+      }
+    }
+    
+    if (!spaceId && req.params.taskId) {
+      const Task = require('../models/Task');
+      const task = await Task.findById(req.params.taskId);
+      if (task) {
+        spaceId = task.space.toString();
+      }
+    }
     
     if (!spaceId) {
       return res.status(400).json({ message: 'Space ID required' });
